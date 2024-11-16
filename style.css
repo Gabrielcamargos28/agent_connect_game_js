@@ -3,30 +3,79 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://img.freepik.com/vetores-gratis/fundo-hexagonal-escuro-com-cor-gradiente_79603-1409.jpg?t=st=1731779935~exp=1731783535~hmac=84007916c756168b5cf2ffd6dcfc74991cbb804e961a1d2f9b87a5ab4294087f&w=1380'); /* Imagem de um tabuleiro de Connect 4 */
+    background-size: cover; /* Faz a imagem cobrir a tela */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    color: white; /* Texto em branco para contraste */
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px black; /* Adiciona efeito de sombra ao título */
+}
+
+#game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Fundo semitransparente para destacar o jogo */
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Efeito de sombra ao redor do jogo */
 }
 
 #board {
     display: grid;
-    grid-template-columns: repeat(8, 100px);
-    grid-template-rows: repeat(7, 100px);
+    grid-template-columns: repeat(8, 75px);
+    grid-template-rows: repeat(7, 75px);
     gap: 5px;
+    margin-bottom: 20px;
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
-    background-color: black;
+    width: 75px;
+    height: 75px;
+    background-color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: transform 0.2s ease; /* Animação ao passar o mouse */
+}
+
+.cell:hover {
+    transform: scale(1.1); /* Amplia ligeiramente ao passar o mouse */
 }
 
 .cell.red {
     background-color: red;
+    box-shadow: 0 0 10px red; /* Brilho vermelho ao redor */
 }
 
 .cell.yellow {
     background-color: yellow;
+    box-shadow: 0 0 10px yellow; /* Brilho amarelo ao redor */
+}
+
+button, input, select {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3c6382;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+}
+
+button:hover, input:hover, select:hover {
+    background-color: #82ccdd; /* Cor mais clara ao passar o mouse */
 }
