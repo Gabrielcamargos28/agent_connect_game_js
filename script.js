@@ -1,8 +1,8 @@
-const ROWS = 7;
-const COLS = 10;
+const ROWS = 7; // Alterado para 7 linhas
+const COLS = 8; // Mantido 8 colunas
 let board = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
 let currentPlayer = "red";
-let ply = 4; // Profundidade de busca para Minimax
+let ply = 4; // Profundidade inicial
 let useAlphaBeta = true; // Algoritmo padrão é Minimax com poda alfa-beta
 
 function createBoard() {
@@ -19,7 +19,22 @@ function createBoard() {
         }
     }
 }
+function checkWin(player) {
+    const directions = [
+        { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: -1 }
+    ];
 
+    for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+            if (board[row][col] === player) {
+                for (const { x, y } of directions) {
+                    if (checkDirection(row, col, x, y, player)) return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 function handleMove(e) {
     const col = e.target.dataset.col;
     if (addPiece(col)) {
@@ -44,21 +59,22 @@ function addPiece(col) {
     return false;
 }
 
-function checkWin(player) {
-    const directions = [
-        { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: 1, y: -1 }
-    ];
+function aiMove() {
+    const startTime = performance.now(); // Medir o tempo inicial
 
-    for (let row = 0; row < ROWS; row++) {
-        for (let col = 0; col < COLS; col++) {
-            if (board[row][col] === player) {
-                for (const { x, y } of directions) {
-                    if (checkDirection(row, col, x, y, player)) return true;
-                }
-            }
-        }
+    const bestMove = useAlphaBeta
+        ? minimax(board, ply, true, -Infinity, Infinity)
+        : minimax(board, ply, true);
+
+    const endTime = performance.now(); // Medir o tempo final
+    console.log(`Tempo de execução (${useAlphaBeta ? "Poda Alfa-Beta" : "Minimax"}): ${(endTime - startTime).toFixed(2)} ms`);
+
+    addPiece(bestMove.col);
+    if (checkWin("yellow")) {
+        console.log("AI venceu!");
+        resetGame();
     }
-    return false;
+    currentPlayer = "red";
 }
 
 function checkDirection(row, col, dx, dy, player) {
@@ -70,19 +86,6 @@ function checkDirection(row, col, dx, dy, player) {
         }
     }
     return true;
-}
-
-function aiMove() {
-    const bestMove = useAlphaBeta
-        ? minimax(board, ply, true, -Infinity, Infinity)
-        : minimax(board, ply, true);
-    
-    addPiece(bestMove.col);
-    if (checkWin("yellow")) {
-        console.log("AI venceu!");
-        //resetGame();
-    }
-    currentPlayer = "red";
 }
 
 function minimax(board, depth, isMaximizingPlayer, alpha = -Infinity, beta = Infinity) {
@@ -192,8 +195,15 @@ document.getElementById("ply-input").addEventListener("change", (e) => {
     ply = parseInt(e.target.value);
 });
 
+//document.getElementById("algorithm").addEventListener("change", (e) => {
+    //useAlphaBeta = e.target.value === "alphabeta";
+//});
+
 document.getElementById("algorithm").addEventListener("change", (e) => {
-    useAlphaBeta = e.target.value === "alphabeta";
+    const selectedValue = e.target.value;
+    useAlphaBeta = selectedValue === "alphabeta";
+    console.log(`Algoritmo selecionado: ${selectedValue} (${useAlphaBeta ? "Poda Alfa-Beta" : "Minimax"})`);
 });
+
 
 createBoard();
