@@ -1,5 +1,5 @@
-const ROWS = 6;
-const COLS = 7;
+const ROWS = 7;
+const COLS = 10;
 let board = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
 let currentPlayer = "red";
 let ply = 4; // Profundidade de busca para Minimax
