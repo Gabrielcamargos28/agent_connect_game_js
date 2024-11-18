@@ -1,9 +1,9 @@
-const ROWS = 7; // Alterado para 7 linhas
-const COLS = 8; // Mantido 8 colunas
+const ROWS = 7; 
+const COLS = 8; 
 let board = Array.from({ length: ROWS }, () => Array(COLS).fill(null));
 let currentPlayer = "red";
-let ply = 4; // Profundidade inicial
-let useAlphaBeta = true; // Algoritmo padrão é Minimax com poda alfa-beta
+let ply = 4; 
+let useAlphaBeta = true;
 
 function createBoard() {
     const boardElement = document.getElementById("board");
@@ -60,13 +60,13 @@ function addPiece(col) {
 }
 
 function aiMove() {
-    const startTime = performance.now(); // Medir o tempo inicial
+    const startTime = performance.now(); 
 
     const bestMove = useAlphaBeta
         ? minimax(board, ply, true, -Infinity, Infinity)
         : minimax(board, ply, true);
 
-    const endTime = performance.now(); // Medir o tempo final
+    const endTime = performance.now(); 
     console.log(`Tempo de execução (${useAlphaBeta ? "Poda Alfa-Beta" : "Minimax"}): ${(endTime - startTime).toFixed(2)} ms`);
 
     addPiece(bestMove.col);

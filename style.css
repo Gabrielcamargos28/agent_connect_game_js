@@ -7,16 +7,16 @@ body {
     height: 100vh;
     margin: 0;
     background-image: url('https://img.freepik.com/vetores-gratis/fundo-hexagonal-escuro-com-cor-gradiente_79603-1409.jpg?t=st=1731779935~exp=1731783535~hmac=84007916c756168b5cf2ffd6dcfc74991cbb804e961a1d2f9b87a5ab4294087f&w=1380'); /* Imagem de um tabuleiro de Connect 4 */
-    background-size: cover; /* Faz a imagem cobrir a tela */
-    background-position: center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    color: white; /* Texto em branco para contraste */
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+    color: white; 
 }
 
 h1 {
     font-size: 3rem;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 5px black; /* Adiciona efeito de sombra ao título */
+    text-shadow: 2px 2px 5px black; 
 }
 
 #game {
@@ -24,9 +24,9 @@ h1 {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7); /* Fundo semitransparente para destacar o jogo */
+    background: rgba(0, 0, 0, 0.7); 
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Efeito de sombra ao redor do jogo */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 #board {
@@ -46,21 +46,21 @@ h1 {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s ease; /* Animação ao passar o mouse */
+    transition: transform 0.2s ease; 
 }
 
 .cell:hover {
-    transform: scale(1.1); /* Amplia ligeiramente ao passar o mouse */
+    transform: scale(1.1); 
 }
 
 .cell.red {
     background-color: red;
-    box-shadow: 0 0 10px red; /* Brilho vermelho ao redor */
+    box-shadow: 0 0 10px red;
 }
 
 .cell.yellow {
     background-color: yellow;
-    box-shadow: 0 0 10px yellow; /* Brilho amarelo ao redor */
+    box-shadow: 0 0 10px yellow;
 }
 
 button, input, select {
@@ -77,5 +77,5 @@ button, input, select {
 }
 
 button:hover, input:hover, select:hover {
-    background-color: #82ccdd; /* Cor mais clara ao passar o mouse */
+    background-color: #82ccdd; 
 }
